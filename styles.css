@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b132b" />
+    <meta name="description" content="متجر Talabek Phone - هواتف وملحقات عربية" />
+    <title>Talabek Phone</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/icon-192.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/icon-192.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="logo-badge">T</div>
+          <div>
+            <p class="brand-subtitle">متجر</p>
+            <h1>Talabek Phone</h1>
+          </div>
+        </div>
+
+        <nav class="main-nav" aria-label="التنقل الرئيسي">
+          <button class="nav-link active" data-filter="all">الكل</button>
+          <button class="nav-link" data-filter="phones">الهواتف</button>
+          <button class="nav-link" data-filter="accessories">الملحقات</button>
+          <button class="nav-link" data-filter="offers">العروض</button>
+        </nav>
+
+        <div class="topbar-actions">
+          <label class="search-box" aria-label="البحث في المنتجات">
+            <span>🔎</span>
+            <input id="searchInput" type="search" placeholder="ابحث عن هاتف أو ملحق..." />
+          </label>
+          <button id="cartToggle" class="cart-button" aria-label="عرض السلة">
+            <span>🛒</span>
+            <span id="cartCount">0</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <section class="hero">
+          <div class="hero-copy">
+            <span class="mini-tag">أفضل العروض اليوم</span>
+            <h2>هواتف ذكية وملحقات أصلية بأسعار مناسبة</h2>
+            <p>
+              اكتشف أحدث نماذج الهواتف، سماعات الرأس، الشواحن، والكفرات مع خدمة سريعة
+              وتوصيل موثوق داخل موريتانيا.
+            </p>
+            <div class="hero-actions">
+              <a href="#products" class="primary-btn">تسوق الآن</a>
+              <button id="installBtn" class="secondary-btn hidden" type="button">تثبيت التطبيق</button>
+            </div>
+            <div class="stats-row">
+              <div>
+                <strong>2500+</strong>
+                <span>عميل راضي</span>
+              </div>
+              <div>
+                <strong>4.9/5</strong>
+                <span>تقييم</span>
+              </div>
+              <div>
+                <strong>24h</strong>
+                <span>توصيل سريع</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="device-card">
+              <div class="device-glow"></div>
+              <div class="phone-preview">
+                <div class="camera"></div>
+                <div class="screen">
+                  <span>12MP</span>
+                  <strong>iPhone Pro</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="products" class="catalog-section">
+          <div class="section-header">
+            <div>
+              <p class="section-kicker">مجموعة المنتجات</p>
+              <h3>الهواتف والملحقات</h3>
+            </div>
+            <div class="filter-chips" aria-label="فلترة المنتجات">
+              <button class="chip active" data-category="all">الكل</button>
+              <button class="chip" data-category="phones">هواتف</button>
+              <button class="chip" data-category="accessories">ملحقات</button>
+            </div>
+          </div>
+          <div id="productList" class="product-grid" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+
+    <aside id="cartDrawer" class="cart-drawer" aria-label="سلة المشتريات">
+      <div class="drawer-header">
+        <h3>سلة المشتريات</h3>
+        <button id="closeCart" class="close-btn" type="button" aria-label="إغلاق السلة">×</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>المجموع</span>
+          <strong id="cartTotal">0.00</strong>
+        </div>
+        <button id="checkoutBtn" class="checkout-btn" type="button">إتمام الطلب</button>
+      </div>
+    </aside>
+
+    <section id="orderSection" class="order-panel hidden">
+      <div class="panel-header">
+        <h3>نموذج الطلب</h3>
+        <button id="closeOrderForm" class="close-btn" type="button" aria-label="إغلاق نموذج الطلب">×</button>
+      </div>
+
+      <form id="orderForm" class="order-form">
+        <div class="field-grid">
+          <label>
+            <span>الاسم الكامل</span>
+            <input name="customerName" type="text" placeholder="مثال: محمد سالم" required />
+          </label>
+          <label>
+            <span>رقم الهاتف</span>
+            <input name="customerPhone" type="tel" placeholder="مثال: 0661234567" required />
+          </label>
+          <label>
+            <span>المدينة</span>
+            <input name="city" type="text" placeholder="نواكشوط" required />
+          </label>
+          <label>
+            <span>العنوان</span>
+            <input name="address" type="text" placeholder="العنوان بالكامل" required />
+          </label>
+        </div>
+
+        <div class="order-meta">
+          <p>عدد العناصر: <strong id="orderItemCount">0</strong></p>
+          <p>إجمالي الطلب: <strong id="orderTotalValue">0.00</strong></p>
+        </div>
+
+        <button type="submit" class="primary-btn wide">تأكيد الطلب</button>
+      </form>
+    </section>
+
+    <section class="admin-panel">
+      <div class="section-header">
+        <div>
+          <p class="section-kicker">لوحة الإدارة</p>
+          <h3>إدارة المنتجات والطلبات</h3>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-card">
+          <h4 id="productFormTitle">إضافة منتج جديد</h4>
+          <form id="productForm" class="product-form">
+            <input type="hidden" id="productId" />
+            <label>
+              <span>اسم المنتج</span>
+              <input id="productName" type="text" placeholder="اسم المنتج" required />
+            </label>
+            <label>
+              <span>الفئة</span>
+              <select id="productCategory" required>
+                <option value="phones">هاتف</option>
+                <option value="accessories">ملحق</option>
+              </select>
+            </label>
+            <label>
+              <span>السعر</span>
+              <input id="productPrice" type="number" min="1" step="0.01" placeholder="2500" required />
+            </label>
+            <label>
+              <span>الكمية المتاحة</span>
+              <input id="productStock" type="number" min="0" step="1" placeholder="20" required />
+            </label>
+            <label>
+              <span>الوصف</span>
+              <textarea id="productDescription" rows="3" placeholder="وصف المنتج" required></textarea>
+            </label>
+            <div class="form-actions">
+              <button type="submit" class="primary-btn">حفظ المنتج</button>
+              <button id="cancelEdit" type="button" class="secondary-btn hidden">إلغاء</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="admin-card">
+          <h4>المنتجات الحالية</h4>
+          <div id="adminProducts" class="admin-products"></div>
+        </div>
+      </div>
+
+      <div class="orders-card admin-card">
+        <h4>الطلبات</h4>
+        <div id="ordersList" class="orders-list"></div>
+      </div>
+    </section>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
